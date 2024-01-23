@@ -36,9 +36,12 @@ const Navbar = () => {
 
     {/* right */}
     <div className='flex justify-between items-center gap-3 font-mono tracking-wider'>
+    {
+      user?.email&&
     <p className='py-2 px-3 rounded-xl bg-purple-900 text-sm font-thin drop-shadow-2xl cursor-pointer'>
       {user?.email}
     </p>
+    }
     <Link to="/allOrders">
     <p className='py-2 px-3 rounded-xl bg-purple-500 cursor-pointer'>
       Orders
