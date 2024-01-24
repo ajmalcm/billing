@@ -5,6 +5,7 @@ const bodyParser=require("body-parser");
 const cors=require("cors");
 const app=express();
 const userRoutes=require('./routes/userRoutes');
+const customerRoutes=require("./routes/customerRoutes")
 
 // middlewares
 
@@ -19,5 +20,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //mainroutes
 app.use("/api/v1",userRoutes);
+app.use("/api/v1",customerRoutes);
 
 module.exports=app;

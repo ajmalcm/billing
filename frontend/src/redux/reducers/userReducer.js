@@ -47,7 +47,7 @@ const userReducer=(state={user:{}},action)=>{
                 error:null
             }
         default:
-            return {...state}
+            return state
     }
 }
 

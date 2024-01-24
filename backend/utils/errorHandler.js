@@ -9,7 +9,7 @@ const errorHandler=(res,err)=>{
     {
         return res.status(400).json({success:false,message:'JsonWebToken is expired try again'})
     }
-     res.status(500).json({success:false,message:err.stack})
+     res.status(500).json({success:false,message:err.message})
 }
 
 module.exports=errorHandler;

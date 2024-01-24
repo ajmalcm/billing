@@ -1,4 +1,6 @@
 import axios from "axios";
+// import {dotenv} from "dotenv"
+// dotenv.config();
 axios.defaults.baseURL='http://localhost:3999'
 import { CLEAR_ERRORS, LOAD_USER_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS,LOGOUT_USER_FAIL,LOGOUT_USER_SUCCESS,REGISTER_FAIL,REGISTER_REQUEST,REGISTER_SUCCESS } from "../constants/userConstants";
 

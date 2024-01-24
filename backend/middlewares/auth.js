@@ -6,6 +6,7 @@ dotenv.config();
 exports.isAuthenticatedUser=async(req,res,next)=>{
     try{
         const {billtoken}=req.cookies;
+        console.log(billtoken)
         if(!billtoken)
         {
             return res.status(401).json({success:false,message:"Please Login to access this resource"})

@@ -30,6 +30,10 @@ const orderModel=new mongoose.Schema({
         ref:"User",
         required:true
     },
+    counter:{
+        type:Number,
+        required:true
+    },
     taxPrice:{
         type:Number,
         default:0,

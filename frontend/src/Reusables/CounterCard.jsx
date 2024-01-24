@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import {useSelector,useDispatch} from "react-redux";
+import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 import { toast } from "react-toastify";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
@@ -19,17 +21,19 @@ const style = {
   p: 4,
 };
 const CounterCard = ({ counterNo }) => {
+  const dispatch=useDispatch();
+  const {loading,error,customer}=useSelector(state=>state.customer);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
   const [registerData, setRegisterData] = useState({
-    customerName: "",
-    customerEmail: "",
-    customerPhno: "",
+    name: "",
+    email: "",
+    phone: "",
   });
-  const { customerName, customerEmail, customerPhno } = registerData;
+  const { name, email, phone } = registerData;
 
   const changeHandler = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
@@ -37,7 +41,7 @@ const CounterCard = ({ counterNo }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (!customerName || !customerEmail || !customerPhno) {
+    if (!name || !email || !phone) {
       toast.error("enter customers details properly");
     } else navigate(`/counter/${counterNo}`);
   };
@@ -77,21 +81,21 @@ const CounterCard = ({ counterNo }) => {
               placeholder="Customer-Name"
               type="text"
               className="flex-0.75 outline-none border-none rounded-md bg-purple-700"
-              name="customerName"
-              value={customerName}
+              name="name"
+              value={name}
               onChange={changeHandler}
             />
           </div>
           <div className="flex items-center gap-3 px-4 py-2 bg-purple-700 w-full">
             <div className="flex-[0.25]">
-              <PersonIcon />
+              <SmartphoneRoundedIcon />
             </div>
             <input
               placeholder="Phone-No"
-              type="text"
+              type="tel"
               className="flex-0.75 outline-none border-none rounded-md bg-purple-700"
-              name="customerPhno"
-              value={customerPhno}
+              name="phone"
+              value={phone}
               onChange={changeHandler}
             />
           </div>
@@ -103,8 +107,8 @@ const CounterCard = ({ counterNo }) => {
               placeholder="Customer-email"
               type="email"
               className="flex-0.75 outline-none border-none rounded-md bg-purple-700"
-              name="customerEmail"
-              value={customerEmail}
+              name="email"
+              value={email}
               onChange={changeHandler}
             />
           </div>
