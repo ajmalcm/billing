@@ -1,5 +1,5 @@
 import TrendingFlatRoundedIcon from "@mui/icons-material/TrendingFlatRounded";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import EmailIcon from "@mui/icons-material/Email";
 import PersonIcon from "@mui/icons-material/Person";
 import { useNavigate } from "react-router-dom";
+import { clearErrors, registerCustomer } from "../redux/actions/customerAction";
+import Loading from "./Loading";
 const style = {
   position: "absolute",
   top: "50%",
@@ -43,10 +45,30 @@ const CounterCard = ({ counterNo }) => {
     e.preventDefault();
     if (!name || !email || !phone) {
       toast.error("enter customers details properly");
-    } else navigate(`/counter/${counterNo}`);
+    } else 
+    {
+      dispatch(registerCustomer(registerData));
+      if(customer.name)
+      {
+        toast.success(`${customer.name} added to customers`)
+      }
+      navigate(`/counter/${counterNo}`);
+    }
   };
+
+  useEffect(()=>{
+    if(error)
+    {
+      toast.error(error);
+      dispatch(clearErrors())
+    }
+  },[error,dispatch])
   return (
     <>
+    {
+      loading?<Loading/>
+      :
+      <>
       <div
         className="h-fit w-fit odd:bg-purple-500 even:bg-purple-700 flex flex-col gap-6 px-3 py-3 text-white m-2 font-mono cursor-pointer"
         onClick={handleOpen}
@@ -121,6 +143,9 @@ const CounterCard = ({ counterNo }) => {
           </button>
         </Box>
       </Modal>
+      </>
+    }
+      
     </>
   );
 };

@@ -1,7 +1,7 @@
 const Customer=require("../models/CustomerModel");
 const errorHandler = require("../utils/errorHandler");
 
-exports.registerCustomer=async(req,res,next)=>{
+exports.registerCustomer=async(req,res)=>{
     try{
         const {name,phone,email}=req.body;
         let customer=await Customer.findOne({email});
@@ -15,5 +15,16 @@ exports.registerCustomer=async(req,res,next)=>{
     catch(err)
     {
         errorHandler(res,err);
+    }
+}
+
+exports.getAllCustomers=async(req,res)=>{
+    try{
+            const customers=await Customer.find();
+            res.status(200).json({success:true,customers})
+    }
+    catch(err)
+    {
+        errorHandler(res,err)
     }
 }

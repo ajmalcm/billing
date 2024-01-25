@@ -6,6 +6,6 @@ const router=express.Router();
 router.post("/register",registerUser);
 router.post("/login",loginUser);
 router.get("/me",isAuthenticatedUser,loadUserDetails);
-router.delete("/logout",logOut);
+router.delete("/logout",isAuthenticatedUser,logOut);
 
 module.exports=router;
