@@ -16,6 +16,18 @@ const CustomerModel=new mongoose.Schema({
         type:String,
         required:[true,"E-mail cannot be empty"],
         validate:[validator.isEmail,"Enter a proper email"]
+    },
+    date:{
+        type:Date,
+        default:Date.now()
+    },
+    paymentId:{
+        type:String,
+        default:"0"
+    },
+    orderId:{
+        type:String,
+        default:"0"
     }
 
 },{

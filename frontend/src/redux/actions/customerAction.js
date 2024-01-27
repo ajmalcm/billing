@@ -27,7 +27,7 @@ catch(err)
 export const getAllCustomers=()=>async(dispatch)=>{
     try{
         dispatch({type:ALL_CUSTOMERS_REQUEST});
-        const {data}=await axios.get("/api/v1/allCustomers");
+        const {data}=await axios.get("/api/v1/allCustomers",{withCredentials:true});
 
         dispatch({type:ALL_CUSTOMERS_SUCCESS,payload:data.customers});
     }
