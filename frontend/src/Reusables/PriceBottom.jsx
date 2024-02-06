@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PriceBottom = ({total,subtotal,tax}) => {
+const PriceBottom = ({subtotal,tax}) => {
   return (
     <div>
     <div className="flex justify-between items-center text-white  text-center gap-2">
@@ -27,7 +27,7 @@ const PriceBottom = ({total,subtotal,tax}) => {
               ₹{subtotal?subtotal:0.0}
             </p>
             <p className="text-bold text-lg text-white tracking-tight">
-              ₹{total?total:0.0}
+              ₹{Math.floor(subtotal?(tax/100)*subtotal:0.0)}
             </p>
           </div>
         </div>

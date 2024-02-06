@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import BorderColorRoundedIcon from "@mui/icons-material/BorderColorRounded";
 import PriceBottom from "./PriceBottom";
 import AddedItems from "./AddedItems";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion"
 export const ItemCount = ({items,setItems}) => {
+
+  const {customer}=useSelector(state=>state.customer);
+  const {counterId}=useParams();
+  const [total,setTotal]=useState(0);
+
+  // const summerize=()=>{
+  //     items.map((it,i)=>{
+  //       setTotal(total+(it.price*it.qty))
+  //     })
+  // }
+
+  useEffect(()=>{
+    // summerize();
+  },[items])
+
   return (
     <div className="flex flex-col items-center relative h-full font-mono">
       {/* top */}
       <div className="bg-purple-800 flex justify-between items-center text-white p-2 w-full mb-2">
         <div className="flex flex-col ">
-          <p>Counter 1</p>
-          <p className="text-[12px]">Customer name</p>
+          <p>{counterId?`Counter ${counterId}`:"Select a counter"}</p>
+          <p className="text-[12px]">{customer?.name?customer?.name:" "}</p>
         </div>
 
         <div className="flex justify-between items-center">
@@ -37,7 +54,10 @@ export const ItemCount = ({items,setItems}) => {
       {/* bottom */}
 
       <div className="w-full mt-2">
-        <PriceBottom total={463.10} subtotal={440} tax={23.10}/>        
+      {
+        counterId&&<PriceBottom subtotal={total} tax={28}/> 
+      }
+               
       </div>
     </div>
   );
