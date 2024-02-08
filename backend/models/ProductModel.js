@@ -15,9 +15,9 @@ const productModel=new mongoose.Schema({
         default:0,
         required:[true,"price cannot be empty"]
     },
-    user:{
+    customer:{
         type:mongoose.Types.ObjectId,
-        ref:"User",
+        ref:"Customer",
         required:true
     },
 },{

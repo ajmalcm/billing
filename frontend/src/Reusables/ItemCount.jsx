@@ -10,7 +10,7 @@ export const ItemCount = ({items,setItems}) => {
 
   const {customer}=useSelector(state=>state.customer);
   const {counterId}=useParams();
-  const [total,setTotal]=useState(0);
+  // const [total,setTotal]=useState(0);
 
   // const summerize=()=>{
   //     items.map((it,i)=>{
@@ -55,7 +55,7 @@ export const ItemCount = ({items,setItems}) => {
 
       <div className="w-full mt-2">
       {
-        counterId&&<PriceBottom subtotal={total} tax={28}/> 
+        counterId&&<PriceBottom tax={28} items={items} setItems={setItems}/> 
       }
                
       </div>

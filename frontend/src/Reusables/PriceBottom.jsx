@@ -1,6 +1,16 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 
-const PriceBottom = ({subtotal,tax}) => {
+const PriceBottom = ({tax,items}) => {
+
+  const [subtotal,setSubtotal]=useState(0);
+  const adder=(total,item)=> {return total+item.price*item.qty};
+
+  useEffect(()=>{
+    let pc;
+    pc= items.reduce(adder,0)
+    setSubtotal(pc);
+  },[items])
+
   return (
     <div>
     <div className="flex justify-between items-center text-white  text-center gap-2">
@@ -12,7 +22,7 @@ const PriceBottom = ({subtotal,tax}) => {
         <div className="flex items-center justify-between p-2">
           <div>
             <p className="text-sm font-light tracking-widest text-gray-300">
-              Tax (5.2%)
+              Tax {`${tax}%`}
             </p>
             <p className="text-sm font-light tracking-widest text-gray-300">
               Subtotal
@@ -21,13 +31,13 @@ const PriceBottom = ({subtotal,tax}) => {
           </div>
           <div>
             <p className="text-sm font-light tracking-widest text-gray-300">
-              ₹{tax?tax:0.0}
+              {tax?Math.floor(subtotal?(tax/100)*subtotal:0.0):0.0}
             </p>
             <p className="text-sm font-light tracking-widest text-gray-300">
               ₹{subtotal?subtotal:0.0}
             </p>
             <p className="text-bold text-lg text-white tracking-tight">
-              ₹{Math.floor(subtotal?(tax/100)*subtotal:0.0)}
+              ₹{Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal}
             </p>
           </div>
         </div>

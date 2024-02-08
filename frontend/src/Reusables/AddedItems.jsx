@@ -16,8 +16,13 @@ const AddedItems = ({itemName,price,qty,index,setItems,items}) => {
 
   const decreaseQty=(ind)=>{
     const deqty=[...items]
+    if(deqty[ind-1].qty<=0)
+    return
+  else
+  {
     deqty[ind-1].qty-=1
     setItems(deqty)
+  }
   }
 
   return (

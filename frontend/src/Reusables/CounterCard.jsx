@@ -135,7 +135,7 @@ const CounterCard = ({ counterNo }) => {
             />
           </div>
           <button
-            type="submit"
+            type="button"
             className="px-4 py-2 text-xl w-3/4 text-white bg-blue-600 rounded-sm tracking-wider font-light"
             onClick={submitHandler}
           >

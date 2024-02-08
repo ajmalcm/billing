@@ -7,18 +7,15 @@ const orderModel=new mongoose.Schema({
             required:true
         },
         quantity:{
-            type:String,
-            required:true,
+            type:Number,
+            default:1,
+            required:true
         },
         price:{
             type:Number,
-            required:true
+            default:0,
+            required:[true,"price cannot be empty"]
         },
-        product:{
-            type:mongoose.Types.ObjectId,
-            ref:"Product",
-            required:true
-        }
     }],
     customer:{
         type:mongoose.Types.ObjectId,
