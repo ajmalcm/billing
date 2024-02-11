@@ -17,6 +17,9 @@ export const ItemCount = ({items,setItems}) => {
   //       setTotal(total+(it.price*it.qty))
   //     })
   // }
+  const clearAllItems=()=>{
+    setItems([]);
+  }
 
   useEffect(()=>{
     // summerize();
@@ -32,8 +35,8 @@ export const ItemCount = ({items,setItems}) => {
         </div>
 
         <div className="flex justify-between items-center">
-          <DeleteOutlineRoundedIcon className="mx-2 cursor-pointer" />
-          <BorderColorRoundedIcon className="mx-2 cursor-pointer" />
+          <DeleteOutlineRoundedIcon className="mx-2 cursor-pointer" onClick={clearAllItems}/>
+          {/* <BorderColorRoundedIcon className="mx-2 cursor-pointer" /> */}
         </div>
       </div>
 

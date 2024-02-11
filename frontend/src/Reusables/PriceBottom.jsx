@@ -14,9 +14,9 @@ const PriceBottom = ({tax,items}) => {
   return (
     <div>
     <div className="flex justify-between items-center text-white  text-center gap-2">
-          <button className="w-1/3 rounded-sm p-2 bg-purple-800 cursor-pointer">Discount</button>
-          <button className="w-1/3 rounded-sm p-2 bg-purple-800 cursor-pointer">Cash</button>
-          <button className="w-1/3 rounded-sm p-2 bg-purple-800 cursor-pointer">UPI</button>
+          <button className={`w-1/3 rounded-sm p-2 bg-purple-800 transition-all ease-in duration-300 ${subtotal?"hover:bg-purple-950 cursor-pointer":'hover:cursor-not-allowed'}`} disabled={subtotal?false:true}>Discount</button>
+          <button className={`w-1/3 rounded-sm p-2 bg-purple-800 transition-all ease-in duration-300 ${subtotal?"hover:bg-purple-950 cursor-pointer":'hover:cursor-not-allowed'}`} disabled={subtotal?false:true}>Cash</button>
+          <button className={`w-1/3 rounded-sm p-2 bg-purple-800 transition-all ease-in duration-300 ${subtotal?"hover:bg-purple-950 cursor-pointer":'hover:cursor-not-allowed'}`} disabled={subtotal?false:true}>UPI</button>
         </div>
         {/* second */}
         <div className="flex items-center justify-between p-2">
