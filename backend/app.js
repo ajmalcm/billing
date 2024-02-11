@@ -6,7 +6,7 @@ const cors=require("cors");
 const app=express();
 const userRoutes=require('./routes/userRoutes');
 const customerRoutes=require("./routes/customerRoutes")
-
+const orderRoutes=require("./routes/orderRoutes");
 // middlewares
 
 app.use(cors({
@@ -21,5 +21,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 //mainroutes
 app.use("/api/v1",userRoutes);
 app.use("/api/v1",customerRoutes);
+app.use("/api/v1",orderRoutes);
 
 module.exports=app;
