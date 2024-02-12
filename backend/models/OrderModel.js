@@ -49,11 +49,13 @@ const orderModel=new mongoose.Schema({
     paymentInfo:{
         id:{
             type:String,
-            required:true
+            default:"000000"
+            // required:true
         },
         status:{
             type:String,
-            required:true
+            default:"success"
+            // required:true
         }
     }
 },{

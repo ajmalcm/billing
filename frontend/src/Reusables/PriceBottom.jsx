@@ -1,15 +1,49 @@
 import React,{useEffect,useState} from 'react'
+import { useSelector,useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { clearErrors, newOrder } from '../redux/actions/ordersAction';
 
 const PriceBottom = ({tax,items}) => {
 
+  const {counterId}=useParams();
+  const dispatch=useDispatch();
+  const {user}=useSelector(state=>state.user);
+  const {customer}=useSelector(state=>state.customer);
+  const {order,error,loading,success}=useSelector(state=>state.order);
+
   const [subtotal,setSubtotal]=useState(0);
-  const adder=(total,item)=> {return total+item.price*item.qty};
+  const [taxx,setTax]=useState(Math.floor(subtotal?(tax/100)*subtotal:0.0));
+  const [total,setTotal]=useState(Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal);
+
+  const adder=(total,item)=> {return total+item.price*item.quantity};
 
   useEffect(()=>{
     let pc;
     pc= items.reduce(adder,0)
     setSubtotal(pc);
+    setTax(tax?Math.floor(subtotal?(tax/100)*subtotal:0.0):0.0)
+    setTotal(Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal)
   },[items])
+
+  useEffect(()=>{
+    if(error)
+    {
+      toast.error(error);
+      dispatch(clearErrors())
+
+    }
+    if(success)
+    {
+      toast.success("Order Placed Successfully");
+    }
+  },[error,dispatch,order])
+
+  const placeOrder=()=>{
+    const orderData={orderItems:items,customer,user,counter:counterId,taxPrice:taxx,itemsPrice:subtotal,totalPrice:total}
+    console.log(orderData);
+    dispatch(newOrder(orderData));
+  }
 
   return (
     <div>
@@ -31,20 +65,20 @@ const PriceBottom = ({tax,items}) => {
           </div>
           <div>
             <p className="text-sm font-light tracking-widest text-gray-300">
-              {tax?Math.floor(subtotal?(tax/100)*subtotal:0.0):0.0}
+              {taxx}
             </p>
             <p className="text-sm font-light tracking-widest text-gray-300">
               ₹{subtotal?subtotal:0.0}
             </p>
             <p className="text-bold text-lg text-white tracking-tight">
-              ₹{Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal}
+              ₹{total}
             </p>
           </div>
         </div>
         {/* third */}
         <div className="flex justify-between items-center text-white  text-center mt-6">
           <button className="w-1/2 tracking-widest  p-2 bg-purple-500 cursor-pointer">KOT</button>
-          <button className="w-1/2 tracking-widest  p-2 bg-purple-700 cursor-pointer">
+          <button className="w-1/2 tracking-widest  p-2 bg-purple-700 cursor-pointer" onClick={placeOrder}>
             Place Order
           </button>
         </div>

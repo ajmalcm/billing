@@ -9,18 +9,18 @@ const AddedItems = ({itemName,price,qty,index,setItems,items}) => {
 
   const increaseQty=(ind)=>{
     const iqty=[...items]
-    iqty[ind-1].qty+=1
+    iqty[ind-1].quantity+=1
     setItems(iqty)
   
   }
 
   const decreaseQty=(ind)=>{
     const deqty=[...items]
-    if(deqty[ind-1].qty<=0)
+    if(deqty[ind-1].quantity<=0)
     return
   else
   {
-    deqty[ind-1].qty-=1
+    deqty[ind-1].quantity-=1
     setItems(deqty)
   }
   }

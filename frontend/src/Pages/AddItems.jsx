@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react'
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { ItemCount } from '../Reusables/ItemCount';
 import TrendingFlatRoundedIcon from '@mui/icons-material/TrendingFlatRounded';
@@ -8,20 +9,20 @@ const AddItems = () => {
 
     const {counterId}=useParams();
     const [items,setItems]=useState([]);
-  const [newItem,setNewItem]=useState({itemName:"",price:"",qty:1});
-  const {itemName,price,qty}=newItem;
+  const [newItem,setNewItem]=useState({name:"",price:"",quantity:1});
+  const {name,price,quantity}=newItem;
     const clearHandler=()=>{
-      setNewItem({itemName:"",price:"",qty:1})
+      setNewItem({name:"",price:"",quantity:1})
     }
 
     const addSubmit=()=>{
-      if(!itemName||!price||!qty)
+      if(!name||!price||!quantity)
       {
         toast.error("Please provide necessary information.")
       }
       else{
         setItems([...items,newItem]);
-        setNewItem({itemName:"",price:"",qty:1});
+        setNewItem({name:"",price:"",quantity:1});
       }
 
     }
@@ -30,11 +31,11 @@ const AddItems = () => {
       setNewItem({...newItem,[e.target.name]:e.target.value})
     }
 
-    const addQty=()=>{
-      setNewItem({...newItem,qty:qty+1})
+    const addquantity=()=>{
+      setNewItem({...newItem,quantity:quantity+1})
     }
-    const subQty=()=>{
-      setNewItem({...newItem,qty:qty-1})
+    const subquantity=()=>{
+      setNewItem({...newItem,quantity:quantity-1})
     }
 
     useEffect(()=>{
@@ -52,18 +53,18 @@ const AddItems = () => {
                 <div className='flex gap-2 items-center w-full justify-between mt-10 text-lg tracking-tight text-center font-bold'>
                   <h2 className='w-full'>Item Name</h2>
                   <h2 className='border-r-[1px] border-l-[1px] w-full'>Price</h2>
-                  <h2 className='w-full'>Qty</h2>
+                  <h2 className='w-full'>quantity</h2>
                 </div>
                 <div className='flex items-center w-full justify-center mt-10 text-lg tracking-widest text-center font-light'>
                   <input placeholder='Item name' className='outline-none border-none text-center p-2 w-full type
-                  ml-3 bg-purple-700' name='itemName' value={itemName} onChange={changeHandler}/>
+                  ml-3 bg-purple-700' name='name' value={name} onChange={changeHandler}/>
                   <input placeholder="price" className='border-r-[1px] bg-purple-700 border-l-[1px] outline-none border-none text-center p-2 w-full
                   ' min={0} name="price" value={price} onChange={changeHandler}/>
                   <div className='flex items-center w-full'>
-                  <button className='px-4 py-2 bg-purple-500' onClick={subQty}>-</button>
+                  <button className='px-4 py-2 bg-purple-500' onClick={subquantity}>-</button>
                   <input placeholder='quantity'  min={1} className='outline-none border-none text-center p-2 w-[70%]
-                   bg-purple-700' name='qty' type='number' value={qty} onChange={changeHandler}/>
-                  <button className='px-4 py-2 bg-purple-500' onClick={addQty}>+</button>
+                   bg-purple-700' name='quantity' type='number' value={quantity} onChange={changeHandler}/>
+                  <button className='px-4 py-2 bg-purple-500' onClick={addquantity}>+</button>
                   </div>
                 </div>
 

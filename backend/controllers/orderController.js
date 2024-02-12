@@ -3,12 +3,12 @@ const  errorHandler =require("../utils/errorHandler");
 
 exports.newOrder=async(req,res)=>{
     try{
-        const {orderItems,customer,user,counter,taxPrice,itemsPrice,totalPrice,paymentInfo}=req.body;
+        const {orderItems,customer,user,counter,taxPrice,itemsPrice,totalPrice}=req.body;
 
         // ({email}=customer)
-        if(orderItems&&customer&&user&&counter&&taxPrice&&itemsPrice&&totalPrice&&paymentInfo)
+        if(orderItems&&customer&&user&&counter&&taxPrice&&itemsPrice&&totalPrice)
         {
-            const order=await Order.create({orderItems,customer,user,counter,taxPrice,itemsPrice,totalPrice,paymentInfo});
+            const order=await Order.create({orderItems,customer,user,counter,taxPrice,itemsPrice,totalPrice});
             return res.status(201).json({success:true,order})
         }
 

@@ -47,7 +47,7 @@ export const ItemCount = ({items,setItems}) => {
     {
       items && items.map((it,i)=>(
         <motion.div key={i} initial={{x:100,y:-50,opacity:0}} exit={{ opacity: 0, x: 50 }} animate={{x:1,y:1}} whileInView={{opacity:1}} transition={{type:"spring",duration:0.5,ease: "easeOut"}}>
-      <AddedItems itemName={it.itemName} price={it.price} qty={it.qty} index={i+1} setItems={setItems} items={items}/>
+      <AddedItems itemName={it.name} price={it.price} qty={it.quantity} index={i+1} setItems={setItems} items={items}/>
         </motion.div>
       ))
     }
