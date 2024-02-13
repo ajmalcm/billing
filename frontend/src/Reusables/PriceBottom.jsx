@@ -13,8 +13,8 @@ const PriceBottom = ({tax,items}) => {
   const {order,error,loading,success}=useSelector(state=>state.order);
 
   const [subtotal,setSubtotal]=useState(0);
-  const [taxx,setTax]=useState(Math.floor(subtotal?(tax/100)*subtotal:0.0));
-  const [total,setTotal]=useState(Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal);
+  const [taxx,setTax]=useState(0);
+  const [total,setTotal]=useState(0);
 
   const adder=(total,item)=> {return total+item.price*item.quantity};
 
@@ -22,8 +22,8 @@ const PriceBottom = ({tax,items}) => {
     let pc;
     pc= items.reduce(adder,0)
     setSubtotal(pc);
-    setTax(tax?Math.floor(subtotal?(tax/100)*subtotal:0.0):0.0)
-    setTotal(Math.floor(subtotal?(tax/100)*subtotal:0.0)+subtotal)
+    setTax(Math.floor((tax/100)*pc))
+    setTotal(Math.floor((tax/100)*pc)+pc)
   },[items])
 
   useEffect(()=>{

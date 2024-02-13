@@ -22,3 +22,16 @@ exports.newOrder=async(req,res)=>{
         errorHandler(res,err);
     }
 }
+
+exports.allOrders=async(req,res)=>{
+    try{
+        const order=await Order.find();
+
+        res.status(200).json({success:true,order})
+
+    }
+    catch(err)
+    {
+        errorHandler(res,err)
+    }
+}
