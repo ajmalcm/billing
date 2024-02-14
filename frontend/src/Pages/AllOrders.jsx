@@ -26,15 +26,15 @@ const AllOrders = () => {
 
   const columns=[
     {
-      field:"name",
-      headerName:"Name",
-      minWidth:150
-    },
+      field:"customerId",
+      headerName:"CustomerId",
+      minWidth:200
+    }, //https://www.youtube.com/watch?v=-F2u__EUQGM
     {
       field:"counter",
       headerName:"Counter",
       type:"number",
-      minWidth:150
+      minWidth:100
     },
     {
       field:"items",
@@ -79,7 +79,7 @@ const AllOrders = () => {
   ]
 
   orders?.order?.forEach((or,i)=>{
-    rows.push({id:i,name:or.customer,counter:or.counter,items:or.orderItems.length,time:new Date(or.createdAt).toLocaleDateString(),orderId:or._id,status:or.paymentInfo.status})
+    rows.push({id:i,customerId:or.customer,counter:or.counter,items:or.orderItems.length,time:new Date(or.createdAt).toLocaleDateString(),orderId:or._id,status:or.paymentInfo.status})
   })
 
   return (
