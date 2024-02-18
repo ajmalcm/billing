@@ -11,6 +11,7 @@ import AddItems from './Pages/AddItems'
 import AllOrders from './Pages/AllOrders'
 import Allcustomers from './Pages/Allcustomers'
 import { loadUser } from './redux/actions/userAction'
+import Scanner from './Reusables/Scanner'
 function App() {
 
   const {isAuthenticated}=useSelector(state=>state.user)
@@ -33,6 +34,7 @@ function App() {
         <Route exact path='/counter/:counterId' element={<AddItems/>}/>
         <Route exact path="/allOrders" element={<AllOrders/>}/>
         <Route exact path="/allCustomers" element={<Allcustomers/>}/>
+        <Route exact path='/scanner' element={<Scanner/>}/>
       </Routes>
     </Router>
     </div>
