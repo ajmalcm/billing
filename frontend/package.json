@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy":"http://localhost:3999",
+  "proxy": "http://localhost:3999",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -19,6 +19,8 @@
     "@redux-devtools/extension": "^3.3.0",
     "axios": "^1.6.3",
     "framer-motion": "^10.16.16",
+    "jsqr": "^1.4.0",
+    "quagga": "^0.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

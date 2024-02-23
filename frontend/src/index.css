@@ -19,7 +19,7 @@ body{
   background-color:rgb(147 51 234);;
   padding:1vmax !important;
 }
-video {
+video,canvas {
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
 }
